@@ -26,7 +26,6 @@ sample/assets/node_modules/
 # dotenv environment variables file
 .env
 
-build
 .dll
 .history
 .idea
