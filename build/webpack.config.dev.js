@@ -10,20 +10,21 @@ const config = process.env.NODE_ENV === 'production' ?
 const baseConfig = require('./webpack.config.base')
 
 const devConfig = {
-  devServer: {  
-    port: config.port,  
+  devServer: {
+    port: config.port,
     hot: true,
+    inline: true,
     disableHostCheck: true,
     host: '0.0.0.0',
     after: function() {
         openBrowser(`http://localhost:${config.port}`)
     }
   },
-  mode: 'development',  
+  mode: 'development',
   devtool: 'cheap-module-source-map',
   stats: 'minimal',
   entry: {
-    index: ['./src/index.tsx']
+    index: [path.join(__dirname, '../src/index.tsx')]
   },
   module: {
     rules: [
@@ -68,9 +69,9 @@ const devConfig = {
             loader: 'url-loader',
             options: {
               limit: 10000,
-              name: 'img/[name].[hash:7].[ext]' 
+              name: 'img/[name].[hash:7].[ext]'
             }
-          }  
+          }
         ]
       },
       {
@@ -80,9 +81,9 @@ const devConfig = {
             loader: 'url-loader',
             options: {
               limit: 10000,
-              name: 'fonts/[name].[hash:7].[ext]'   
+              name: 'fonts/[name].[hash:7].[ext]'
             }
-          }  
+          }
         ]
       },
     ]
@@ -92,7 +93,7 @@ const devConfig = {
       format: '编译进度：[:bar] :percent (耗时：:elapsed 秒)',
       clear: true,
       width: 60,
-      strem: process.stdout ? process.stdout : undefined,  
+      strem: process.stdout ? process.stdout : undefined,
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': `"${config.env}"`,

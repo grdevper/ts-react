@@ -4,22 +4,20 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const HappyPack = require('happypack')
 const webpack = require('webpack')
-const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 
 const config = process.env.NODE_ENV === 'production' ?
  require('./config.prod') : require('./config.dev')
-const manifest = require('../.dll/manifest');
+const manifest = require('../.dll/manifest')
 
 module.exports = {
   devtool: 'hidden-source-map',
-  entry: {
-    index: path.join(__dirname, '../src/index.tsx')
-  },
   output: {
     path: path.join(config.contextPath, config.path),
     filename: 'js/[name].js',
     chunkFilename: 'chunk/[name].js',
-    publicPath: `${config.publicPath}/`,
+    publicPath: `${config.publicPath}`, //静态资源的根路径，如果通过服务端启动项目，就是静态资源的路径
+    pathinfo: false
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -48,6 +46,7 @@ module.exports = {
       template: path.join(__dirname, `../src/template/${config.templateName}`),
       hash: config.env === 'development',
       title: config.title,
+      inject: true,
       minify: {
         collapseWhitespace: config.dev === 'production',
         minifyJS: config.env === 'production',
@@ -60,7 +59,7 @@ module.exports = {
         'babel-loader?cacheDirectory'
       ],
       threadPool: HappyPack.ThreadPool({size: 4}),
-      verboseWhenProfiling: true, 
+      verboseWhenProfiling: true,
     }),
     new CaseSensitivePathsPlugin(),
     new webpack.DllReferencePlugin({
