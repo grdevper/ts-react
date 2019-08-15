@@ -8,6 +8,7 @@ import Provider from './provider'
 import * as store from '@store/index'
 import PageLoading from '@components/pageLoading'
 import Error from '@components/error'
+import styles from './index.scss';
 
 const hashHistory = createHashHistory();
 const history = syncHistoryWithStore(hashHistory, store.routerStore);
@@ -22,7 +23,7 @@ const Page1 = Loadable({
     loading: PageLoading
 });
 
-const AppWrapper = ({children}: {children?: React.ReactNode}) => <div>{children}</div>;
+const AppWrapper = ({children}: {children?: React.ReactNode}) => <div className={styles.wraper}>{children}</div>;
 
 function App() {
   return (

@@ -1,5 +1,17 @@
 @import "_base.scss";
 
 .header{
-  background: #fff;
+  width: 100px;
+  text-align: center;
+  font-size: 18px;
+  margin: 20px 0;
+  line-height: 40px;
+}
+.slider {
+  display: flex;
+  flex: 1;
+}
+.breadcrumb{
+  margin-left: 16px;
+  margin-top: 10px;
 }

@@ -7,6 +7,7 @@ import Provider from './provider';
 import * as store from '@store/index';
 import PageLoading from '@components/pageLoading';
 import Error from '@components/error';
+import styles from './index.scss';
 const hashHistory = createHashHistory();
 const history = syncHistoryWithStore(hashHistory, store.routerStore);
 const Home = Loadable({
@@ -17,7 +18,7 @@ const Page1 = Loadable({
     loader: () => import(/* webpackChunkName: "Page1" */ '@views/page1'),
     loading: PageLoading
 });
-const AppWrapper = ({ children }) => React.createElement("div", null, children);
+const AppWrapper = ({ children }) => React.createElement("div", { className: styles.wraper }, children);
 function App() {
     return (React.createElement(Provider, null,
         React.createElement(AppWrapper, null,

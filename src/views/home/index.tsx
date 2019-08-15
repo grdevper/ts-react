@@ -1,23 +1,40 @@
-import React from 'react'
-import {Layout} from 'antd';
+import React, {useState} from 'react'
+import {Layout, Menu, Breadcrumb} from 'antd';
 
 import styles from './index.scss';
 
 const {Header, Sider, Content} = Layout;
+const {SubMenu} = Menu;
+const MenuItem = Menu.Item;
 
 function Home() {
+  const [count, setCount] = useState(0);
   return (
     <Layout>
-       <Header>
-          <div className={styles.header}>
-            come on
-          </div>
-       </Header>
+       <Header/>
        <Layout>
-         <Sider/>
+         <Sider>
+           <Menu
+             mode="inline"
+           >
+             <SubMenu
+               key="sub1"
+               title="sub11"
+             >
+                 <MenuItem>A</MenuItem>
+                 <MenuItem>B</MenuItem>
+                 <MenuItem>C</MenuItem>
+             </SubMenu>
+           </Menu>
+         </Sider>
          <Layout>
+           <Breadcrumb className={styles.breadcrumb}>
+             <Breadcrumb.Item>Home</Breadcrumb.Item>
+             <Breadcrumb.Item>List</Breadcrumb.Item>
+             <Breadcrumb.Item>App</Breadcrumb.Item>
+           </Breadcrumb>
            <Content>
-              hhhhhahah
+               {count}
            </Content>
          </Layout>
        </Layout>
