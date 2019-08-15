@@ -55,7 +55,12 @@ module.exports = {
     new HappyPack({
       id: 'babel',
       loaders: [
-        'cache-loader',
+        {
+          loader: 'cache-loader',
+          options: {
+            cacheDirectory: path.join(__dirname, '../.cache-loader')
+          }
+        },
         'babel-loader?cacheDirectory'
       ],
       threadPool: HappyPack.ThreadPool({size: 4}),

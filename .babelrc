@@ -1,13 +1,13 @@
 {
     "presets": [
-      "@babel/preset-react",
       [
         "@babel/preset-env",
         {
           "useBuiltIns": "usage"
-        },
-        "@babel/preset-typescript"
-      ]
+        }
+      ],
+      "@babel/preset-typescript",
+      "@babel/preset-react"
     ],
     "plugins": [
       "react-hot-loader/babel",
@@ -26,4 +26,3 @@
       "@babel/plugin-proposal-class-properties"
     ]
   }
-  

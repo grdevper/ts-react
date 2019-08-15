@@ -63,6 +63,35 @@ const devConfig = {
         ]
       },
       {
+        test: /\.scss/,
+        include: [path.join(__dirname, '../src')],
+        use: [
+          'css-hot-loader',
+          'style-loader',
+          {
+            loader: 'cache-loader',
+            options: {
+              cacheDirectory: path.join(__dirname, '../.cache-loader')
+            }
+          },
+          {
+            loader: 'typings-for-css-modules-loader',
+            options: {
+              modules: true,
+              nameExport: true,
+              camelCase: true,
+              sass: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [require('bourbon').includePaths, path.join(__dirname, '../src/styles')]
+            }
+          }
+        ]
+      },
+      {
         test: /\.(png|jpe?g|gif)(\?.*)?$/,
         use: [
           {
