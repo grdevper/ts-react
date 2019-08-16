@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, Breadcrumb, Button } from 'antd';
 import styles from './index.scss';
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -20,7 +20,10 @@ function Home() {
                     React.createElement(Breadcrumb.Item, null, "Home"),
                     React.createElement(Breadcrumb.Item, null, "List"),
                     React.createElement(Breadcrumb.Item, null, "App")),
-                React.createElement(Content, null, count)))));
+                React.createElement(Content, { className: styles.main },
+                    React.createElement(Button, null, "increase"),
+                    React.createElement(Button, null, "decrease"),
+                    React.createElement("span", null, count))))));
 }
 export default Home;
 //# sourceMappingURL=index.js.map

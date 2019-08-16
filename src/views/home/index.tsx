@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Layout, Menu, Breadcrumb} from 'antd';
+import {Layout, Menu, Breadcrumb, Button} from 'antd';
 
 import styles from './index.scss';
 
@@ -33,8 +33,10 @@ function Home() {
              <Breadcrumb.Item>List</Breadcrumb.Item>
              <Breadcrumb.Item>App</Breadcrumb.Item>
            </Breadcrumb>
-           <Content>
-               {count}
+           <Content className={styles.main}>
+             <Button>increase</Button>
+             <Button>decrease</Button>
+             <span>{count}</span>
            </Content>
          </Layout>
        </Layout>
