@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout, Menu, Breadcrumb, Button } from 'antd';
 import styles from './index.scss';
 const { Header, Sider, Content } = Layout;
@@ -6,6 +6,15 @@ const { SubMenu } = Menu;
 const MenuItem = Menu.Item;
 function Home() {
     const [count, setCount] = useState(0);
+    const increase = () => {
+        setCount(count + 1);
+    };
+    const decrease = () => {
+        setCount(count - 1);
+    };
+    useEffect(() => {
+        console.log(count);
+    });
     return (React.createElement(Layout, null,
         React.createElement(Header, null),
         React.createElement(Layout, null,
@@ -21,8 +30,8 @@ function Home() {
                     React.createElement(Breadcrumb.Item, null, "List"),
                     React.createElement(Breadcrumb.Item, null, "App")),
                 React.createElement(Content, { className: styles.main },
-                    React.createElement(Button, null, "increase"),
-                    React.createElement(Button, null, "decrease"),
+                    React.createElement(Button, { onClick: increase }, "increase"),
+                    React.createElement(Button, { onClick: decrease }, "decrease"),
                     React.createElement("span", null, count))))));
 }
 export default Home;

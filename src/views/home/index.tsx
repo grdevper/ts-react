@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Layout, Menu, Breadcrumb, Button} from 'antd';
 
 import styles from './index.scss';
@@ -9,6 +9,15 @@ const MenuItem = Menu.Item;
 
 function Home() {
   const [count, setCount] = useState(0);
+  const increase = ():void => {
+    setCount(count+1);
+  };
+  const decrease = ():void => {
+    setCount(count-1);
+  };
+  useEffect(():void => {
+     console.log(count);
+  });
   return (
     <Layout>
        <Header/>
@@ -34,8 +43,8 @@ function Home() {
              <Breadcrumb.Item>App</Breadcrumb.Item>
            </Breadcrumb>
            <Content className={styles.main}>
-             <Button>increase</Button>
-             <Button>decrease</Button>
+             <Button onClick={increase}>increase</Button>
+             <Button onClick={decrease}>decrease</Button>
              <span>{count}</span>
            </Content>
          </Layout>

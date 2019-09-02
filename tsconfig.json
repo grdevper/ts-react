@@ -13,7 +13,8 @@
          "@components/*": ["components/*"],
          "@store/*": ["store/*"],
          "@utils/*": ["utils/*"],
-         "@views/*": ["views/*"]
+         "@views/*": ["views/*"],
+         "@api/*": ["api/*"]
       },
       "jsx": "react",
       "alwaysStrict": true,
