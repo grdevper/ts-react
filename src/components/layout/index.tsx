@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Suspense, lazy} from 'react'
 import Loadable from 'react-loadable'
 import { HashRouter, Router, Switch, Route } from 'react-router-dom'
 import { createHashHistory } from 'history'
@@ -23,15 +23,27 @@ const Page1 = Loadable({
     loading: PageLoading
 });
 
+const LazyPage = lazy(() => import('@views/lazyPage'));
+
+
 const AppWrapper = ({children}: {children?: React.ReactNode}) => <div className={styles.wraper}>{children}</div>;
 
 function App() {
+  const fallback = () => {
+     console.log('11234');
+     return (
+       <div>i just want to test</div>
+     );
+  };
   return (
     <Provider>
       <AppWrapper>
         <Router history={history}>
           <HashRouter>
             <Switch>
+                <Suspense fallback={fallback()}>
+                  <LazyPage/>
+                </Suspense>
                 <Route exact path="/page1" component={Page1} />
                 <Route path="/" component={Home} />
                 <Route component={Error} />
